@@ -1,6 +1,4 @@
-require 'deck'
-require 'card'
-require 'hand'
+require 'player'
 require 'rspec'
 
 describe Card do
@@ -61,3 +59,25 @@ describe Hand do
         end
     end
 end
+
+describe Player do
+    subject(:deck) {Deck.new}
+    subject(:player) {Player.new(deck,1500)}
+
+    describe "#initialize" do
+        it "creates the holdings for a player" do
+            expect(player.hand.holdings.length).to eq(5)
+        end
+        it "creates a pot for a player" do
+            expect(player.pot).to eq(1500)
+        end
+    end
+
+    describe "#discard" do
+        it "requests input from the player" do
+            player.discard.stub(:gets).and_return("y\n")
+            expect(player.discard).to eq('y')
+        end
+    end
+end
+    
