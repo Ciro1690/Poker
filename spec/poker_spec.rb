@@ -1,4 +1,4 @@
-require 'player'
+require 'game'
 require 'rspec'
 
 describe Card do
@@ -72,12 +72,21 @@ describe Player do
             expect(player.pot).to eq(1500)
         end
     end
+end
 
-    describe "#discard" do
-        it "requests input from the player" do
-            player.discard.stub(:gets).and_return("y\n")
-            expect(player.discard).to eq('y')
+describe Game do
+    subject(:game) {Game.new}
+
+    describe "#initialize" do
+        it "creates a deck" do
+            expect(game.deck).to be_a(Deck)
         end
+        it "creates two unique players" do
+            expect(game.player1).to be_a(Player)
+            expect(game.player2).to be_a(Player)
+            expect(game.player1).not_to be(game.player2)
+        end
+        it " "
     end
 end
     
