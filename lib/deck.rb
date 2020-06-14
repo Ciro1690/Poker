@@ -1,3 +1,5 @@
+require_relative 'card'
+
 class Deck
 
     SUITS = ['diamonds','hearts','spades','clubs']
@@ -16,5 +18,13 @@ class Deck
                 @cards << Card.new(value,suit)
             end
         end
+    end
+
+    def shuffle
+        @cards.shuffle!
+    end
+
+    def draw
+        @cards.shift
     end
 end

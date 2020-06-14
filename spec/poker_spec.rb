@@ -1,5 +1,6 @@
 require 'deck'
 require 'card'
+require 'hand'
 require 'rspec'
 
 describe Card do
@@ -33,7 +34,30 @@ describe Deck do
 
     describe "#shuffle" do
         it "shuffles cards array" do
-            expect(deck.cards[0]).to eq()
+            deck.cards.should =~ deck.shuffle
+            deck.cards[0] != deck.shuffle[0]
+            deck.cards[1] != deck.shuffle[1]
+        end
+    end
+
+    describe "#draw" do
+        it "returns the first element of the deck and removes it from the deck" do
+            deck.draw
+            expect(deck.cards.length).to eq(51)
+            expect(deck.draw).to be_a(Card)
+        end
+    end
+end
+
+describe Hand do 
+    subject(:deck) {Deck.new}
+    subject(:hand) {Hand.new(deck)}
+
+    describe "#initialize" do
+        it "assigns holdings to an array of 5 card objects" do
+            expect(hand.holdings.length).to eq(5)
+            expect(hand.holdings[0]).to be_a(Card)
+            expect(deck.cards.length).to eq(47)
         end
     end
 end
