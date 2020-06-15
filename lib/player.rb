@@ -38,7 +38,7 @@ class Player
     end
 
     def decide(bet=0)
-        if bet = 0
+        if bet == 0
             print "What would you like to bet? "
             starting_bet = gets.chomp
             @pot -= starting_bet

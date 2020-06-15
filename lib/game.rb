@@ -28,11 +28,15 @@ class Game
         return false
     end
 
-    def take_turn(player)
+    def take_turn
         if @current_player == @player1
             @current_player = @player2
         else
             @current_player = @player1
         end
+    end
+
+    def winning_hand?(hand1,hand2)
+        hand1.ranking > hand2.ranking
     end
 end
